@@ -4,12 +4,12 @@
       <%= render 'books/new', book: @book_new, user: @book.user %>
       
       <div class="col-md-8 offset-md-1">
-        <h2>Books Detail</h2>
+        <h2>Book detail</h2>
         <table class="table table-hover table-inverse">
           <tbody>
             <tr>
               <td>
-                <%= link_to user_path do %>
+                <%= link_to user_path(@book.user_id) do %>
                   <%= image_tag @book.user.get_profile_image(80,80) %><br>
                   <%= @book.user.name %>
                 <% end %>
@@ -22,12 +22,14 @@
               <td>
                 <p><%= @book.body %></p>
               </td>
+              <% if @book.user == current_user %>
               <td>
                 <%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-sm btn-success" %>
               </td>
               <td>
                 <%= link_to "Destroy", book_path(@book), method: :delete, class:"btn btn-sm btn-danger" %>
               </td>
+              <% end %>
             </tr>
           </tbody>
         </table>

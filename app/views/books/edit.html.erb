@@ -9,7 +9,7 @@
           <%= f.text_field :title, class:"form-control" %>
           <p>Opinion</p>
             <%= f.text_area :body, class:"form-control" %><br>
-          <%= f.submit 'Create Book', class:"btn btn-success mb-4" %>
+          <%= f.submit 'Update Book', class:"btn btn-success mb-4" %>
         <% end %>
         <p><%=link_to "Show", book_path(@book.id) %> | <a href="/books">Back</a></p>
       </div>
