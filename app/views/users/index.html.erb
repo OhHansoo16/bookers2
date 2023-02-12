@@ -1,7 +1,7 @@
 <main>
   <div class="container px-5 py-4 px-sm-0">
     <div class="row">
-      <%= render 'books/new', book: @book, user: @user %>
+      <%= render 'books/new', book: @book, user: current_user %>
       
       <div class="col-md-8 offset-md-1">
         <h2>Books</h2>
@@ -9,26 +9,26 @@
           <thead>
             <tr>
               <th></th>
-              <th>Title</th>
-              <th>Opinion</th>
+              <th>Name</th>
+              <th>Introduction</th>
               <th colspan="3"></th>
             </tr>
           </thead>
-          <% @books.each do |book| %>
+          <% @users.each do |user| %>
           <tbody>
             <tr>
               <td>
-                <%= link_to user_path(book.user_id) do %>
-                  <%= image_tag book.user.get_profile_image(80,80) %>
+                <%= link_to user_path(user.id) do %>
+                  <%= image_tag user.get_profile_image(80,80) %>
                 <% end %>
               </td>
               <td>
-                <%= link_to book_path(book.id) do %>
-                  <p><%= book.title %></p>
+                <%= link_to user_path(user.id) do %>
+                  <p><%= user.name %></p>
                 <% end %>
               </td>
               <td>
-                <p><%= book.body %></p>
+                <p><%= user.introduction %></p>
               </td>
             </tr>
           </tbody>
