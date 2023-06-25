@@ -32,10 +32,13 @@
               <td>フォロー数：<%= user.followings.count %></td>
               <td>フォロワー数：<%= user.followers.count %></td>
               <td>
-                <% if current_user.following?(user) %>
-                  <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete, class:"btn btn-primary mx-auto" %>
+                <% if user == current_user %>
                 <% else %>
-                  <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class:"btn btn-success mx-auto" %>
+                  <% if current_user.following?(user) %>
+                    <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete, class:"btn btn-primary mx-auto" %>
+                  <% else %>
+                    <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class:"btn btn-success mx-auto" %>
+                  <% end %>
                 <% end %>
               </td>
               <td>
