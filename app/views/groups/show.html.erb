@@ -1,0 +1,44 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <%= render 'books/new', book: @book_new, user: current_user %>
+    <div class='col-md-8 offset-md-1'>
+      <h2>Group Detail</h2>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th>メンバー</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <% if @group.group_image.attached? %>
+                <%= image_tag @group.group_image, size:"50x50" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "50x50" %>
+              <% end %>
+            </td>
+            </td>
+            <td><%= @group.name %></td>
+            <td><%= @group.introduction %></td>
+            <td>
+              <% @group.users.each do |member| %>
+                <%= member.name %><br>
+              <% end %>
+            </td>
+            <% if @group.owner_id == current_user.id %>
+              <td><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %></td>
+              <td><%= link_to 'Notice an Event',group_new_mail_path(@group), class: "btn btn-sm btn-info" %></td>
+            <% elsif @group.users.include?(current_user) %>
+              <td><%= link_to 'Leave this group', group_path(@group), method: :delete, class: "btn btn-sm btn-danger" %></td>
+            <% else %>
+              <td><%= link_to 'Join this group', group_join_path(@group), class: "btn btn-sm btn-success" %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
