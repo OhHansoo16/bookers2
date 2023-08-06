@@ -22,11 +22,19 @@
               <td>
                 <p><%= @book.body %></p>
               </td>
+              <td>
+                <% if @book.category.present? %>
+                  <%=link_to @book.category, tagsearches_search_path(content: @book.category) %>
+                <% end %>
+              </td>
               <td id="favorite_buttons_<%= @book.id %>">
                 <%= render "favorites/favorite", book: @book %>
               </td>
               <td>
                 <p><%= "コメント数:#{@book.book_comments.count}" %></p>
+              </td>
+              <td>
+                <%= render "static_rate", book: @book %>
               </td>
               <% if @book.user == current_user %>
               <td>

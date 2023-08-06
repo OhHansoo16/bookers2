@@ -8,7 +8,10 @@
           <p>Title</p>
           <%= f.text_field :title, class:"form-control" %>
           <p>Opinion</p>
-            <%= f.text_area :body, class:"form-control" %><br>
+          <%= f.text_area :body, class:"form-control" %><br>
+          <div class="form-group">
+            <%= render "static_rate", book: @book %>
+          </div>
           <%= f.submit 'Update Book', class:"btn btn-success mb-4" %>
         <% end %>
         <p><%=link_to "Show", book_path(@book.id) %> | <a href="/books">Back</a></p>
