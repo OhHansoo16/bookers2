@@ -15,7 +15,7 @@
                 <% end %>
               </td>
               <td>
-              <%= link_to book_path() do %>
+              <%= link_to book_path(@book.id) do %>
                   <p><%= @book.title %></p>
                 <% end %>
               </td>
